@@ -54,7 +54,7 @@ Detector (Detector de disparo único), SSD, con una red base de ResNet**.
 
 
 ### CVZone
-This is a Computer vision package that makes its easy to run Image processing and AI functions. At the core it uses OpenCV and Mediapipe libraries.
+Este es un paquete de visión por computadora que facilita la ejecución de funciones de procesamiento de imágenes y IA. En esencia, utiliza las bibliotecas OpenCV y Mediapipe.
 
 ## Investigación
 
