@@ -1,0 +1,21 @@
+from cvzone.FaceDetectionModule import FaceDetector
+import cv2
+
+cap = cv2.VideoCapture(0)
+detector = FaceDetector()
+
+while True:
+    success, img = cap.read()
+    img, bboxs = detector.findFaces(img)
+    if bboxs:
+        x1, y1, w1, h1 = bboxs[0]['bbox']
+        x2 = x1 + w1
+        y2 = y1 + h1
+        img2 = cv2.imread("luffy.jpg")
+        img2_resized = cv2.resize(img2, (w1, h1))
+        cv2.imshow("Image", img)
+        if cv2.waitKey(1) == 13:
+            break
+
+cv2.destroyAllWindows()
+cap.release()
