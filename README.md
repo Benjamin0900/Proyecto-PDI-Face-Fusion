@@ -16,3 +16,7 @@ Facilidad de uso: Se construirá una interfaz de usuario sencilla e intuitiva. E
   - Benjamín Quiroz
   - Benjamín Espinoza
   - Juan Mamani
+
+## Investigación
+
+## Diseño
