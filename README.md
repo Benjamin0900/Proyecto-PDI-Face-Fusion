@@ -17,6 +17,43 @@ Facilidad de uso: Se construirá una interfaz de usuario sencilla e intuitiva. E
   - Benjamín Espinoza
   - Juan Mamani
 
+### OpenCV
+
+Es una **biblioteca libre de visión artificial** originalmente **desarrollada
+por Intel**. Desde que apareció su primera versión alfa en el mes de enero de
+1999, se ha utilizado en infinidad de aplicaciones. Desde sistemas de seguridad
+con detección de movimiento, hasta aplicaciones de control de procesos donde se
+requiere reconocimiento de objetos. Esto se debe a que su publicación se da bajo
+**licencia BSD**, que permite que sea usada libremente para propósitos
+comerciales y de investigación con las condiciones en ella expresadas.
+
+Open CV es **multiplataforma**, existiendo versiones para GNU/Linux, Mac OS X,
+Windows y Android. Contiene más de 500 funciones que abarcan una gran gama de
+áreas en el proceso de visión, como reconocimiento de objetos, reconocimiento
+facial, calibración de cámaras, visión estérea y visión robótica.
+
+### Detección de rostros con OpenCV
+
+Desde su versión 3.3, OpenCV cuenta con funciones de
+**detección de rostros basado en aprendizaje profundo**. Estas funciones
+pertenecen al módulo de **redes neuronales profundas (dnn)**.
+
+El módulo de dnn incluye soporte para Caffe, TensorWlof y Torch/PyTorch. Su
+principal contribuidor es **Aleksandr Rybnikov**.
+
+Para utilizar las funciones de detección de rostros del módulo dnn se requieren
+los archivos correspondientes con el modelo y los pesos del mismo.
+
+En el caso de un un modelo con módulos para Caffe, se requieren:
+
+- Archivo **.prototxt** que define la **arquitectura del modelo**.
+- Archivo **.caffemodel** que contiene los **pesos** para las capas del modelo.
+
+El detector facial de aprendizaje profundo de OpenCV se basa en un **Single Shot
+Detector (Detector de disparo único), SSD, con una red base de ResNet**.
+
+
 ## Investigación
 
 ## Diseño
+
