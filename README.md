@@ -12,3 +12,7 @@ Efectividad: Habrá un enfoque de aprendizaje profundo para aplicar filtros de f
 Facilidad de uso: Se construirá una interfaz de usuario sencilla e intuitiva. Esto permitirá que los usuarios apliquen filtros con facilidad y sin necesidad de conocimientos técnicos.
 
 ## Integrantes
+
+  - Benjamín Quiroz
+  - Benjamín Espinoza
+  - Juan Mamani
