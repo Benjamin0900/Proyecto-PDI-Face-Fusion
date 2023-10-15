@@ -53,6 +53,9 @@ El detector facial de aprendizaje profundo de OpenCV se basa en un **Single Shot
 Detector (Detector de disparo único), SSD, con una red base de ResNet**.
 
 
+### CVZone
+This is a Computer vision package that makes its easy to run Image processing and AI functions. At the core it uses OpenCV and Mediapipe libraries.
+
 ## Investigación
 
 ## Diseño
