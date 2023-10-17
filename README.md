@@ -17,6 +17,8 @@ Facilidad de uso: Se construirá una interfaz de usuario sencilla e intuitiva. E
   - Benjamín Espinoza
   - Juan Mamani
 
+## Investigación
+
 ### OpenCV
 
 Es una **biblioteca libre de visión artificial** originalmente **desarrollada
@@ -56,7 +58,10 @@ Detector (Detector de disparo único), SSD, con una red base de ResNet**.
 ### CVZone
 Este es un paquete de visión por computadora que facilita la ejecución de funciones de procesamiento de imágenes y IA. En esencia, utiliza las bibliotecas OpenCV y Mediapipe.
 
-## Investigación
+### Face Landmark Detection
+
+### Filtros
 
 ## Diseño
+
 
