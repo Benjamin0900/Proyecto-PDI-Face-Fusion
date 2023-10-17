@@ -60,7 +60,7 @@ Este es un paquete de visión por computadora que facilita la ejecución de func
 
 ### Face Landmark Detection
 
-![Face_Landmarks](https://github.com/nijoko/Proyecto-PDI-Face-Fusion/blob/main/images/facial_landmarks.jpg){:width="300px" height="200px"}
+![Face_Landmarks](https://github.com/nijoko/Proyecto-PDI-Face-Fusion/blob/main/images/facial_landmarks.jpg)(:width="300px" height="200px")
 
 <img src="https://github.com/nijoko/Proyecto-PDI-Face-Fusion/blob/main/images/facial_landmarks.jpg" width="200">
 
