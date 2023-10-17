@@ -17,7 +17,7 @@ Facilidad de uso: Se construirá una interfaz de usuario sencilla e intuitiva. E
   - Benjamín Espinoza
   - Juan Mamani
 
-## Investigación
+## Investigación y Diseño
 
 ### OpenCV
 
@@ -59,9 +59,43 @@ Detector (Detector de disparo único), SSD, con una red base de ResNet**.
 Este es un paquete de visión por computadora que facilita la ejecución de funciones de procesamiento de imágenes y IA. En esencia, utiliza las bibliotecas OpenCV y Mediapipe.
 
 ### Face Landmark Detection
+La detección de landmarks faciales se refiere a la identificación y ubicación de puntos clave en el rostro humano. Estos puntos clave, también conocidos como landmarks o puntos de referencia, son ubicaciones específicas en el rostro, como los ojos, la nariz, la boca, las cejas, etc. La detección de landmarks faciales es una técnica fundamental en la visión por computadora y el reconocimiento facial.
+
+El proceso de detección de landmarks faciales implica el uso de modelos de aprendizaje profundo que han sido entrenados para reconocer y localizar estos puntos en una imagen o video. Una vez que se han detectado los landmarks faciales, se pueden realizar una variedad de tareas, como seguimiento de emociones faciales, reconocimiento de gestos, aplicaciones de belleza y maquillaje virtual, entre otras.
 
 ### Filtros
 
-## Diseño
+En el contexto de aplicaciones de procesamiento de imágenes y visión por computadora, los filtros se utilizan para aplicar efectos o modificaciones a una imagen. En el contexto de procesamiento de imágenes faciales, se pueden aplicar filtros para cambiar la apariencia de un rostro o realzar ciertas características. Algunos ejemplos de filtros comunes incluyen:
 
+ - Tono sepia: Este filtro da a la imagen un tono cálido y envejecido similar al de las fotografías antiguas.
 
+ - Aclarar: Un filtro de aclarado puede aumentar el brillo y la claridad de una imagen facial, lo que a menudo se utiliza para mejorar la apariencia de la piel y los rasgos.
+
+ - Filtros de maquillaje virtual: Estos filtros permiten aplicar maquillaje virtualmente a una imagen facial, lo que puede incluir lápiz labial, sombras de ojos, rubor y más.
+
+La selección de un filtro específico depende de los objetivos de la aplicación y de la preferencia del usuario. Para aplicar filtros, se pueden utilizar técnicas de procesamiento de imágenes junto con detección de landmarks faciales para asegurar que el filtro se aplique de manera precisa en las áreas deseadas del rostro.
+
+ - Máscaras y regiones de interés (ROI)
+ - Transformaciones geométricas
+ - Interpolación y suavizado
+ - Mezcla de imágenes
+ - Segmentación de características
+ - Corrección de color y luminosidad
+ - Alineación facial
+
+### 
+En el diseño de FaceFusion, es importante considerar cómo identificar de manera efectiva las diferentes partes del rostro, como la boca, las cejas y los ojos. Para lograr esto, podemos aprovechar varias técnicas de procesamiento de imágenes y machine learning. Algunas de estas técnicas incluyen:
+
+ - Detección de bordes y contornos: Utilizamos operadores de detección de bordes, como Sobel o Canny, para encontrar áreas de alto contraste en la imagen que corresponden a los bordes de nuestras características faciales, como los ojos o la boca.
+
+ - Segmentación de color: La segmentación de color nos ayuda a aislar regiones del rostro que tienen colores específicos. Esto es especialmente útil para aplicar filtros de maquillaje o efectos de color en áreas como los labios.
+
+ - Clasificación de características con machine learning: Creamos modelos de machine learning, como redes neuronales convolucionales (CNN), y los entrenamos para clasificar y localizar características faciales particulares. Por ejemplo, podríamos entrenar un modelo para detectar los ojos y las cejas en una imagen.
+
+ - Detección de formas y patrones: Aplicamos técnicas de detección de formas y patrones para identificar estructuras geométricas que coinciden con partes del rostro, como los contornos de los ojos, las cejas y otras características.
+
+ - Modelos pre-entrenados de landmarks faciales: Aprovechamos modelos pre-entrenados de detección de landmarks faciales disponibles en bibliotecas como dlib o OpenCV. Estos modelos son capaces de identificar automáticamente landmarks importantes en el rostro, como los ojos, la boca y las cejas.
+
+ - Regiones de interés (ROI) basadas en landmarks: Una vez que detectamos los landmarks faciales en el rostro, definimos regiones de interés alrededor de estos landmarks. Por ejemplo, podemos crear una ROI alrededor de los landmarks que representan los ojos y aplicar filtros específicos en esas áreas.
+
+ - Técnicas de aprendizaje profundo: Utilizamos técnicas de aprendizaje profundo, como redes neuronales convolucionales (CNN) o redes de detección de objetos, para localizar y clasificar áreas específicas del rostro, como los ojos o la boca.
