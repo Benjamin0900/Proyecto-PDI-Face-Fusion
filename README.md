@@ -60,7 +60,7 @@ Este es un paquete de visión por computadora que facilita la ejecución de func
 
 ### Face Landmark Detection
 
-![Face_Landmarks]([URL_de_la_Imagen](https://github.com/nijoko/Proyecto-PDI-Face-Fusion/blob/main/images/facial_landmarks.jpg))
+![Face_Landmarks]((https://github.com/nijoko/Proyecto-PDI-Face-Fusion/blob/main/images/facial_landmarks.jpg))
 
 La detección de landmarks faciales se refiere a la identificación y ubicación de puntos clave en el rostro humano. Estos puntos clave, también conocidos como landmarks o puntos de referencia, son ubicaciones específicas en el rostro, como los ojos, la nariz, la boca, las cejas, etc. La detección de landmarks faciales es una técnica fundamental en la visión por computadora y el reconocimiento facial.
 
