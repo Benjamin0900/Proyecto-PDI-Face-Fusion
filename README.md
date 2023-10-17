@@ -83,7 +83,8 @@ La selección de un filtro específico depende de los objetivos de la aplicació
  - Corrección de color y luminosidad
  - Alineación facial
 
-### 
+### Análisis del rostro
+
 En el diseño de FaceFusion, es importante considerar cómo identificar de manera efectiva las diferentes partes del rostro, como la boca, las cejas y los ojos. Para lograr esto, podemos aprovechar varias técnicas de procesamiento de imágenes y machine learning. Algunas de estas técnicas incluyen:
 
  - Detección de bordes y contornos: Utilizamos operadores de detección de bordes, como Sobel o Canny, para encontrar áreas de alto contraste en la imagen que corresponden a los bordes de nuestras características faciales, como los ojos o la boca.
