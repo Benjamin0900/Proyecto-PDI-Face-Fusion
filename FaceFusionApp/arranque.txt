@@ -1,0 +1,8 @@
+## Módulos:
+- pip install -r requirements.txt
+
+## Lanzamiento de la aplicación por consola:
+- python FaceFusion.py
+
+## Lanzamiento UI estructura (no implementado con aplicación):
+- python FaceFusionUI.py
