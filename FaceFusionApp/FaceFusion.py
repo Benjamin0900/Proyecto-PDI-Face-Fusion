@@ -45,7 +45,6 @@ filters_config = {
 }
 
 
-# detect facial landmarks in image
 def getLandmarks(img):
     mp_face_mesh = mp.solutions.face_mesh
     selected_keypoint_indices = [127, 93, 58, 136, 150, 149, 176, 148, 152, 377, 400, 378, 379, 365, 288, 323, 356, 70, 63, 105, 66, 55,
@@ -71,7 +70,6 @@ def getLandmarks(img):
                 face_keypnts[idx][0] = value.x
                 face_keypnts[idx][1] = value.y
 
-            # Convert normalized points to image coordinates
             face_keypnts = face_keypnts * (width, height)
             face_keypnts = face_keypnts.astype('int')
 
@@ -84,7 +82,6 @@ def getLandmarks(img):
 
 
 def load_filter_img(img_path, has_alpha):
-    # Read the image
     img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
 
     alpha = None
@@ -100,7 +97,6 @@ def load_landmarks(annotation_file):
         csv_reader = csv.reader(csv_file, delimiter=",")
         points = {}
         for i, row in enumerate(csv_reader):
-            # skip head or empty line if it's there
             try:
                 x, y = int(row[1]), int(row[2])
                 points[row[0]] = (x, y)
@@ -113,11 +109,11 @@ def find_convex_hull(points):
     hull = []
     hullIndex = cv2.convexHull(np.array(list(points.values())), clockwise=False, returnPoints=False)
     addPoints = [
-        [48], [49], [50], [51], [52], [53], [54], [55], [56], [57], [58], [59],  # Outer lips
-        [60], [61], [62], [63], [64], [65], [66], [67],  # Inner lips
-        [27], [28], [29], [30], [31], [32], [33], [34], [35],  # Nose
-        [36], [37], [38], [39], [40], [41], [42], [43], [44], [45], [46], [47],  # Eyes
-        [17], [18], [19], [20], [21], [22], [23], [24], [25], [26]  # Eyebrows
+        [48], [49], [50], [51], [52], [53], [54], [55], [56], [57], [58], [59],  # labios externos
+        [60], [61], [62], [63], [64], [65], [66], [67],  # labios internos
+        [27], [28], [29], [30], [31], [32], [33], [34], [35],  # nariz
+        [36], [37], [38], [39], [40], [41], [42], [43], [44], [45], [46], [47],  # ojos
+        [17], [18], [19], [20], [21], [22], [23], [24], [25], [26]  # cejas
     ]
     hullIndex = np.concatenate((hullIndex, addPoints))
     for i in range(0, len(hullIndex)):
@@ -145,10 +141,8 @@ def load_filter(filter_name="dog"):
         temp_dict['points'] = points
 
         if filter['morph']:
-            # Find convex hull for delaunay triangulation using the landmark points
             hull, hullIndex = find_convex_hull(points)
 
-            # Find Delaunay triangulation for convex hull points
             sizeImg1 = img1.shape
             rect = (0, 0, sizeImg1[1], sizeImg1[0])
             dt = fbc.calculateDelaunayTriangles(rect, hull)
@@ -169,10 +163,8 @@ def load_filter(filter_name="dog"):
     return filters, multi_filter_runtime
 
 
-# process input from webcam or video file
 cap = cv2.VideoCapture(0)
 
-# Some variables
 count = 0
 isFirstFrame = True
 sigma = 50
@@ -180,7 +172,6 @@ sigma = 50
 iter_filter_keys = iter(filters_config.keys())
 filters, multi_filter_runtime = load_filter(next(iter_filter_keys))
 
-# The main loop
 while True:
 
     ret, frame = cap.read()
@@ -190,11 +181,9 @@ while True:
 
         points2 = getLandmarks(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
 
-        # if face is partially detected
         if not points2 or (len(points2) != 75):
             continue
 
-        ################ Optical Flow and Stabilization Code #####################
         img2Gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         if isFirstFrame:
@@ -208,7 +197,6 @@ while True:
                                                         np.array(points2, np.float32),
                                                         **lk_params)
 
-        # Final landmark points are a weighted average of detected landmarks and tracked landmarks
 
         for k in range(0, len(points2)):
             d = cv2.norm(np.array(points2[k]) - points2Next[k])
@@ -217,10 +205,8 @@ while True:
             points2[k] = fbc.constrainPoint(points2[k], frame.shape[1], frame.shape[0])
             points2[k] = (int(points2[k][0]), int(points2[k][1]))
 
-        # Update variables for next pass
         points2Prev = np.array(points2, np.float32)
         img2GrayPrev = img2Gray
-        ################ End of Optical Flow and Stabilization Code ###############
 
         if VISUALIZE_FACE_POINTS:
             for idx, point in enumerate(points2):
@@ -241,10 +227,8 @@ while True:
                 dt = filter_runtime['dt']
                 hull1 = filter_runtime['hull']
 
-                # create copy of frame
                 warped_img = np.copy(frame)
 
-                # Find convex hull
                 hull2 = []
                 for i in range(0, len(hullIndex)):
                     hull2.append(points2[hullIndex[i][0]])
@@ -253,7 +237,6 @@ while True:
                 mask1 = cv2.merge((mask1, mask1, mask1))
                 img1_alpha_mask = cv2.merge((img1_alpha, img1_alpha, img1_alpha))
 
-                # Warp the triangles
                 for i in range(0, len(dt)):
                     t1 = []
                     t2 = []
@@ -265,12 +248,9 @@ while True:
                     fbc.warpTriangle(img1, warped_img, t1, t2)
                     fbc.warpTriangle(img1_alpha_mask, mask1, t1, t2)
 
-                # Blur the mask before blending
                 mask1 = cv2.GaussianBlur(mask1, (3, 3), 10)
 
                 mask2 = (255.0, 255.0, 255.0) - mask1
-
-                # Perform alpha blending of the two images
                 temp1 = np.multiply(warped_img, (mask1 * (1.0 / 255)))
                 temp2 = np.multiply(frame, (mask2 * (1.0 / 255)))
                 output = temp1 + temp2
@@ -281,13 +261,10 @@ while True:
                 trans_img = cv2.warpAffine(img1, tform, (frame.shape[1], frame.shape[0]))
                 trans_alpha = cv2.warpAffine(img1_alpha, tform, (frame.shape[1], frame.shape[0]))
                 mask1 = cv2.merge((trans_alpha, trans_alpha, trans_alpha))
-
-                # Blur the mask before blending
                 mask1 = cv2.GaussianBlur(mask1, (3, 3), 10)
 
                 mask2 = (255.0, 255.0, 255.0) - mask1
 
-                # Perform alpha blending of the two images
                 temp1 = np.multiply(trans_img, (mask1 * (1.0 / 255)))
                 temp2 = np.multiply(frame, (mask2 * (1.0 / 255)))
                 output = temp1 + temp2
